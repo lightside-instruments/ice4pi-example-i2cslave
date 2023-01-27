@@ -1,0 +1,5 @@
+ice4pi-example-i2cslave (1.0) bullseye; urgency=medium
+
+  * Initial release.
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Fri, 27 Jan 2023 03:32:20 +0100
