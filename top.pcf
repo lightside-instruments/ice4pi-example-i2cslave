@@ -3,9 +3,11 @@
 #pi side
 
 set_io clk 21
-set_io i2c_sda 139
-set_io i2c_scl 141
 
+set_io spi_miso 68 # 115
+set_io spi_mosi 67 # 114
+set_io spi_clk 70 # 112
+set_io spi_cs_n  113 # 128 # /ce1
 
 
 set_io led[0] 99
@@ -24,5 +26,6 @@ set_io pmod[4] 87
 set_io pmod[5] 88
 set_io pmod[6] 90
 set_io pmod[7] 91
+
 
 

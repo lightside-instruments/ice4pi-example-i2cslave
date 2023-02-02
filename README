@@ -3,6 +3,7 @@ Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
 1. Install all necessary packages to synthesize rot.v and build bit image (rot.bin) for the ice4pi:
 
  sudo apt-get install yosys fpga-icestorm arachne-pnr flashrom
+ sudo apt-get install spi-tools
  make
 
 2. Make sure your Pi has SPI enabled (e.g. use raspi-config)
@@ -13,30 +14,13 @@ Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
 
 ---
 
-4. Validate new i2c device is accessible:
+4. Validate spi loopback:
 
-pi@raspberrypi:~ $ i2cdetect -r -y 2
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- -- 
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- UU -- --
 
-Writing 0x03 to address 0x00 of the device:
+echo -n 0123456789ABCDEF | spi-pipe -d /dev/spidev0.1 -s 10000000
 
-pi@raspberrypi:~ $ i2cset -y 1 0x3c 0x00 0x03 b
+You should get back 
+F0123456789ABCDE
 
-Two diodes light up!
+(F may be NUL if this is your first call)
 
-Reading the level on the PMOD pins:
-
-# Pin IO4 (indexation 1-8) connected to logical zero (0V)
-pi@raspberrypi:~/ice4pi-i2cslave$ i2cget -y 1 0x3c 0x04 b
-0x00
-# Connected to logical one (e.g. 3.3V)
-pi@raspberrypi:~/ice4pi-i2cslave$ i2cget -y 1 0x3c 0x04 b
-0x20
