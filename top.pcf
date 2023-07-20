@@ -25,4 +25,10 @@ set_io pmod[5] 88
 set_io pmod[6] 90
 set_io pmod[7] 91
 
+#set_io tx 67
+set_io tx 68
+
+set_io ce0  71 # iCE_SS_B ce0/gpio8
+set_io ce1  128 # ce1/gpio7
+
 

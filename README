@@ -1,3 +1,12 @@
+This example is designed to work with a special ethernetbitbang4pi shield which
+allows driving the 10BASE-T Ethernet differential transmit pair with TTL logic.
+
+The examples sends Link Test Pulses (LTP) and a ARP packet querying the MAC address of 10.0.0.3 IP address.
+Receive side is not yet implemented.
+
+The top.v contains the code instantiates the PLL primitive for 60 MHz since with 12 MHz input clock this is the only precise option for the 10BASE-T waveform generation:
+ icepll -i 12 -o 60 -f pll.v -m
+
 Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
 
 1. Install all necessary packages to synthesize rot.v and build bit image (rot.bin) for the ice4pi:
@@ -13,5 +22,7 @@ Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
 
 ---
 
-4. Validate 120MHz clock is generated.
-The diodes light up!
+4. Connect to Ethernet peer e.g. bridge and check that the Link Test Pulses (LTP) are received every 10 ms and the link is up.  Also ARP packets are being sent with 5 ms offset from the LTPs.
+
+
+The link led lights up and indicates traffic!
