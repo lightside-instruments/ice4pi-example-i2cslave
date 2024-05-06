@@ -1,11 +1,5 @@
-ice4pi-example-i2cslave (1.1) bullseye; urgency=medium
-
-  * Added apt-get install i2c-tools line to the README resolving missing i2cdetect, i2cset and i2cget tools
-
- -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Sat, 04 Mar 2023 21:05:19 +0100
-
-ice4pi-example-i2cslave (1.0) bullseye; urgency=medium
+ice4pi-example-ws2812b (1.0) UNRELEASED; urgency=medium
 
   * Initial release.
 
- -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Fri, 27 Jan 2023 03:32:20 +0100
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Mon, 06 May 2024 12:57:22 +0200

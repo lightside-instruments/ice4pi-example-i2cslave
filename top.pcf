@@ -1,28 +1,11 @@
-# For the spark-v2 60 pin low-speed SFP and LED interface signals ice4pi based add-on board.
+# For the iCE40HX-1K iCEstick
 
-#pi side
-
+set_io D1 99
+set_io D2 98
+set_io D3 97
+set_io D4 96
+set_io D5 95
 set_io clk 21
-set_io i2c_sda 139
-set_io i2c_scl 141
 
-
-
-set_io led[0] 99
-set_io led[1] 98
-set_io led[2] 97
-set_io led[3] 96
-set_io led[4] 95
-
-
-# pmod IO
-set_io pmod[0] 78
-set_io pmod[1] 79
-set_io pmod[2] 80
-set_io pmod[3] 81
-set_io pmod[4] 87
-set_io pmod[5] 88
-set_io pmod[6] 90
-set_io pmod[7] 91
-
-
+set_io sig1 137 #R11
+set_io sig2 135 #R13

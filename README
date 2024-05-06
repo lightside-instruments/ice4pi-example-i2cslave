@@ -1,44 +1,18 @@
-Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
+Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bookworm):
 
-1. Install all necessary packages to synthesize rot.v and build bit image (rot.bin) for the ice4pi:
+1. Install all necessary packages to synthesize top.v and build bit image (top.bin) for the ice4pi:
 
  sudo apt-get install yosys fpga-icestorm arachne-pnr flashrom
  make
 
 2. Make sure your Pi has I2C enabled (e.g. use raspi-config)
 
-3. Load the rot.bin file to the shield:
+3. Load the top.bin file to the shield:
 
  sudo make load
 
 ---
 
-4. Validate new i2c device is accessible:
+Connect data input pin to PIN11 of the Raspberry Pi 2x20 connector (mapped to sig1 signal in top.pcf) 
 
- sudo apt-get install i2c-tools
-
-pi@raspberrypi:~ $ i2cdetect -r -y 2
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- -- 
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- UU -- --
-
-Writing 0x03 to address 0x00 of the device:
-
-pi@raspberrypi:~ $ i2cset -y 1 0x3c 0x00 0x03 b
-
-Two diodes light up!
-
-Reading the level on the PMOD pins:
-
-# Pin IO4 (indexation 1-8) connected to logical zero (0V)
-pi@raspberrypi:~/ice4pi-i2cslave$ i2cget -y 1 0x3c 0x04 b
-0x00
-# Connected to logical one (e.g. 3.3V)
-pi@raspberrypi:~/ice4pi-i2cslave$ i2cget -y 1 0x3c 0x04 b
-0x20
+All your first 8 LEDs should be on at 100% capacity and a reset and reload should be done every second.

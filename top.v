@@ -1,38 +1,81 @@
+//https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
 
-module top(input clk,
+module top(input clk, output sig1);
+   
+   localparam LED_COUNT=8;
 
-           //i2c slave interface
-           inout i2c_sda, input i2c_scl,
-
-           output reg [4:0] led,
-           input [7:0] pmod);
-
-   reg rst = 1'b1;
-   reg [7:0] pmod_i2c;
-   wire [7:0] led_i2c;
-   reg [27:0] startup_cnt = 28'd0;
-
-
-   i2cSlaveTop i2c0(.clk(clk), .rst(rst), .sda(i2c_sda), .scl(i2c_scl),
-                    //output regs 0-3
-                    .myReg0(led_i2c),
-                    //input regs 4-7
-                    .myReg4({pmod, 2'b00}),
-);
-
-   always @ (posedge clk)
-   begin
-      if(startup_cnt < 28'd144000000)
+   reg ready = 0;
+   reg [23:0]     divider;
+   reg [3:0] state0_counter;
+   reg [3:0] state1_counter;
+   reg ws2812b_data;
+   reg [4:0] state;
+ 
+   always @(posedge clk) begin
+      if (ready) 
         begin
-            rst <= 1'b1;
-            startup_cnt <= startup_cnt + 1;
-         end
+           if (divider == 12000000) 
+             begin
+                divider <= 0;
+             end
+           else 
+             divider <= divider + 1;
+        end
       else
         begin
-            rst <= 1'b0;
-            led <= led_i2c[5:0];
-            pmod_i2c <= pmod[7:0];
+           ready <= 1;
+           divider <= 0;
         end
    end
 
+   always @(posedge clk) begin
+      if (ready) 
+        begin
+          if (divider == (LED_COUNT*3*24*15-1))
+            begin
+              state <= 2;
+              ws2812b_data <= 1;
+            end
+          else if (divider == (12000000-100*12-1))
+            begin
+              state <= 3;
+              ws2812b_data <= 0;
+            end
+          else if (divider == (12000000-1)) 
+            begin
+              state <= 0;
+              ws2812b_data <= 0;
+              state0_counter <= 0;
+            end
+          else if(state == 0)
+            begin
+             state0_counter <= state0_counter + 1;
+             if(state0_counter == 4)
+               begin
+                 state <= 1;
+                 state1_counter <= 0;
+                 ws2812b_data <= 1;
+               end
+            end
+          else if(state == 1)
+            begin
+              state1_counter <= state1_counter + 1;
+              if(state1_counter == 9)
+                begin
+                  state <= 0;
+                  state0_counter <= 0;
+                  ws2812b_data <= 0;
+                end
+            end
+        end
+      else 
+        begin
+             state <= 0; 
+             ws2812b_data <= 0;
+             state0_counter <= 0;
+             state1_counter <= 0;
+        end
+   end
+   
+   assign sig1 = ws2812b_data;
 endmodule // top
