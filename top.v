@@ -2,7 +2,7 @@
 
 module top(input clk, output sig1);
    
-   localparam LED_COUNT=8;
+   localparam LED_COUNT=24;
 
    reg ready = 0;
    reg [23:0]     divider;
@@ -14,7 +14,7 @@ module top(input clk, output sig1);
    always @(posedge clk) begin
       if (ready) 
         begin
-           if (divider == 12000000) 
+           if (divider == (12000000-1)) 
              begin
                 divider <= 0;
              end
@@ -31,7 +31,7 @@ module top(input clk, output sig1);
    always @(posedge clk) begin
       if (ready) 
         begin
-          if (divider == (LED_COUNT*3*24*15-1))
+          if (divider == (LED_COUNT*3*8*15-1))
             begin
               state <= 2;
               ws2812b_data <= 1;
