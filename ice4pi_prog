@@ -1,14 +1,22 @@
 #!/bin/bash
-echo 24 > /sys/class/gpio/export || true
-echo out > /sys/class/gpio/gpio24/direction
-echo 1 >/sys/class/gpio/gpio24/value
-sleep 1
-echo 0 >/sys/class/gpio/gpio24/value
+
+gpioset `gpiofind GPIO24`=0
 
 tr '\0' '\377' < /dev/zero | dd bs=1M count=4 of=image iflag=fullblock
 dd if=${1} conv=notrunc of=image
 flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=20000 -w image
-#workaround first time fails after initial programming
-flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=20000 -w image
-echo 1 >/sys/class/gpio/gpio24/value
+ice_cdone_before=`gpioget \`gpiofind GPIO25\``
+gpioset `gpiofind GPIO24`=1
+sleep 1
+ice_reset=`gpioget \`gpiofind GPIO24\``
+ice_cdone_after=`gpioget \`gpiofind GPIO25\``
 
+if [ "$ice_cdone_before" != "0" ] ; then
+    echo "Error: ice_cdone_before=$ice_cdone_before"
+    exit 1
+fi
+
+if [ "$ice_cdone_after" != "1" ] ; then
+    echo "Error: ice_cdone_after=$ice_cdone_after"
+    exit 2
+fi

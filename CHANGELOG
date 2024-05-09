@@ -1,3 +1,10 @@
+ice4pi-example-i2cslave (1.2) bookworm; urgency=medium
+
+  * Replaced deprecated /sysfs gpio interface with gpiod gpioset and gpioget commands
+  * Added validation of ice_cdone signal is toggled 0->1 after completion
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Fri, 10 May 2024 01:37:28 +0200
+
 ice4pi-example-i2cslave (1.1) bullseye; urgency=medium
 
   * Added apt-get install i2c-tools line to the README resolving missing i2cdetect, i2cset and i2cget tools
