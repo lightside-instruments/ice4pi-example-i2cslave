@@ -1,3 +1,9 @@
+ice4pi-example-ws2812b (1.) bookworm; urgency=medium
+
+  * Extended functionality by adding 24 bit register pixel value
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Thu, 09 May 2024 23:33:31 +0200
+
 ice4pi-example-ws2812b (1.1) bookworm; urgency=medium
 
   * Fixed bug in calculation of elapsed cycles 24*3 instead of 8*3 causing longer led sequence
