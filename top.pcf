@@ -16,13 +16,15 @@ set_io led[4] 95
 
 
 # pmod IO
-set_io pmod[0] 78
-set_io pmod[1] 79
-set_io pmod[2] 80
-set_io pmod[3] 81
-set_io pmod[4] 87
-set_io pmod[5] 88
-set_io pmod[6] 90
-set_io pmod[7] 91
+set_io -pullup yes pmod[0] 78
+set_io -pullup yes pmod[1] 79
+set_io -pullup yes pmod[2] 80
+set_io -pullup yes pmod[3] 81
+set_io -pullup yes pmod[4] 87
+set_io -pullup yes pmod[5] 88
+set_io -pullup yes pmod[6] 90
+set_io -pullup yes pmod[7] 91
 
 
+set_io sig1 135 #R13
+set_io sig2 137 #R11

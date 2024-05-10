@@ -1,6 +1,7 @@
 read_verilog top.v
 read_verilog rot.v
 #read_verilog I2Cslave.v
+read_verilog ws2812b.v
 read_verilog lib/hw/opencores/i2cslave/rtl/i2cSlaveTop.v
 read_verilog lib/hw/opencores/i2cslave/rtl/i2cSlave.v
 read_verilog lib/hw/opencores/i2cslave/rtl/serialInterface.v

@@ -1,4 +1,4 @@
-Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
+Assuming you are running on a Raspberry Pi 2-5 or Zero (tested with bookworm):
 
 1. Install all necessary packages to synthesize rot.v and build bit image (rot.bin) for the ice4pi:
 
@@ -33,6 +33,16 @@ Writing 0x03 to address 0x00 of the device:
 pi@raspberrypi:~ $ i2cset -y 1 0x3c 0x00 0x03 b
 
 Two diodes light up!
+
+ i2cset -y 1 0x3c 0x01 0xFF b
+
+The LED strip ws2812b is now blue!
+
+ i2cset -y 1 0x3c 0x01 0x00 b
+ i2cset -y 1 0x3c 0x02 0xFF b
+
+The LED strip ws2812b is now red!
+
 
 Reading the level on the PMOD pins:
 
