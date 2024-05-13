@@ -29,7 +29,7 @@ module top(input clk,
                     .myReg4({pmod, 2'b00}),
 );
 
-   ws2812b ws2812b0(.clk(clk), .sig1(sig1), .value({red,green,blue}));
+   ws2812b ws2812b0(.clk(clk), .sig1(sig1), .value({green[7:0],red[7:0],blue[7:0]}));
 
    always @ (posedge clk)
    begin

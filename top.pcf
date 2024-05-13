@@ -26,5 +26,5 @@ set_io -pullup yes pmod[6] 90
 set_io -pullup yes pmod[7] 91
 
 
-set_io sig1 135 #R13
-set_io sig2 137 #R11
+set_io sig2 135 #R13
+set_io sig1 137 #R11
