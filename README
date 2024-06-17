@@ -34,14 +34,12 @@ pi@raspberrypi:~ $ i2cset -y 1 0x3c 0x00 0x03 b
 
 Two diodes light up!
 
- i2cset -y 1 0x3c 0x01 0xFF b
 
-The LED strip ws2812b is now blue!
+Configure 1PPS (1Hz) 6000000 (0x5B8D80) 12MHz clocks per transition
 
- i2cset -y 1 0x3c 0x01 0x00 b
- i2cset -y 1 0x3c 0x02 0xFF b
-
-The LED strip ws2812b is now red!
+ i2cset -y 1 0x3c 0x01 0x5B b
+ i2cset -y 1 0x3c 0x02 0x8D b
+ i2cset -y 1 0x3c 0x03 0x80 b
 
 
 Reading the level on the PMOD pins:

@@ -1,12 +1,5 @@
-ice4pi-example-i2cslave-ws2812b (1.4) bookworm; urgency=medium
+ice4pi-example-i2cslave-clock-divider (1.0) bookworm; urgency=medium
 
-  * Increased update rate from 1Hz to 120Hz
-  * Modified ws2812b module input value bit order to match i2c register octets
+  * Initial release
 
- -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Tue, 14 May 2024 00:58:02 +0200
-
-ice4pi-example-i2cslave-ws2812b (1.3) bookworm; urgency=medium
-
-  * Initial release.
-
- -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Fri, 10 May 2024 02:49:31 +0200
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Mon, 17 Jun 2024 17:10:46 +0200
