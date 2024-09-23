@@ -1,3 +1,9 @@
+ice4pi-example-spi-slave (1.1) bookworm; urgency=medium
+
+  * Modified ice4pi_prog script to use gpiod utils. Now working on Pi 5 and latest images
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Mon, 23 Sep 2024 21:52:33 +0200
+
 ice4pi-example-spi-slave (1.0) bullseye; urgency=medium
 
   * Initial release
