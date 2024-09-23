@@ -7,7 +7,7 @@ set_io clk 21
 set_io spi_miso 68 # 115
 set_io spi_mosi 67 # 114
 set_io spi_clk 70 # 112
-set_io spi_cs_n  113 # 128 # /ce1
+set_io spi_cs_n  128 # 113 # /ce0 # 128 # /ce1
 
 
 set_io led[0] 99
@@ -28,4 +28,29 @@ set_io pmod[6] 90
 set_io pmod[7] 91
 
 
+set_io ctrl_led 37
+
+# GPIB IO
+set_io gpib[0] 38  #DIO01
+set_io gpib[1] 39  #DIO02
+set_io gpib[2] 41  #DIO03
+set_io gpib[3] 42  #DIO04
+set_io gpib[4] 43  #DIO05
+set_io gpib[5] 44  #DIO06
+set_io gpib[6] 45  #DIO07
+set_io gpib[7] 47  #DIO08
+
+set_io gpib_pe 48  #SN75160_PE
+set_io gpib_te 49  #SN75160_TE
+
+set_io gpib[8] 50  #REN
+set_io gpib[9] 52  #IFC
+set_io gpib[10] 56 #NDAC
+set_io gpib[11] 58 #NRFD
+set_io gpib[12] 60 #DAV
+set_io gpib[13] 61 #EOI
+set_io gpib[14] 62 #ATN
+set_io gpib[15] 63 #SRQ
+
+set_io gpib_dc 64  #SN75161_DC
 
