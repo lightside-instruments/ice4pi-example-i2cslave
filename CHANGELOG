@@ -1,3 +1,11 @@
+ice4pi-example-gpib-scope (1.1) bookworm; urgency=medium
+
+  * Corrected bit order and used little endian byte order to match sigrok pulseview demo
+  * Added top-counter.v driving the 16 GPIB signals as a 1MHz clock as demo peer option
+  * Updated README
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Tue, 22 Oct 2024 16:04:08 +0200
+
 ice4pi-example-gpib-scope (1.0) bookworm; urgency=medium
 
   * Initial release

@@ -1,6 +1,6 @@
-Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
+Assuming you are running on a Raspberry Pi 2-5 or Zero (tested with bookworm Pi5):
 
-1. Install all necessary packages to synthesize rot.v and build bit image (rot.bin) for the ice4pi:
+1. Install all necessary packages to synthesize top.v and build bit image (top.bin) for the ice4pi:
 
  sudo apt-get install yosys fpga-icestorm arachne-pnr flashrom
  sudo apt-get install spi-tools
@@ -8,19 +8,18 @@ Assuming you are running on a Raspberry Pi 2-4 or Zero (tested with bullseye):
 
 2. Make sure your Pi has SPI enabled (e.g. use raspi-config)
 
-3. Load the rot.bin file to the shield:
+3. Load the top.bin file to the shield:
 
  sudo make load
 
 ---
 
-4. Validate spi loopback:
+4. Use SPI to read all 16 GPIB signals at 5MHz sampling rate and send to any TCP/IP connecting client on port 1234:
 
+#!/usr/bin/bash
+while [ 1 ] ; do
+    dd if=/dev/zero bs=$((64*1024)) iflag=fullblock | /home/pi/spi-tools-0.8.4/src/spi-pipe -d /dev/spidev0.1 --blocksize=$((64*1024)) -s 80000000 | nc -l 0.0.0.0 1234
+done
 
-echo -n 0123456789ABCDEF | spi-pipe -d /dev/spidev0.1 -s 10000000
-
-You should get back 
-F0123456789ABCDE
-
-(F may be NUL if this is your first call)
+5. You can generate a 1MHz 16 bit clock driving the 16 GPIB signals if you replace top.v with top-counter.v
 
