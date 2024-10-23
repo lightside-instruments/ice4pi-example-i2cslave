@@ -1,3 +1,9 @@
+ice4pi-example-gpib-scope (1.2) bookworm; urgency=medium
+
+  * Added device emulator template with bi-directional 16 GPIB IOs toggling SRQ every sec 
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Wed, 23 Oct 2024 14:58:55 +0200
+
 ice4pi-example-gpib-scope (1.1) bookworm; urgency=medium
 
   * Corrected bit order and used little endian byte order to match sigrok pulseview demo
