@@ -27,7 +27,7 @@ endgenerate
 
 
    reg [23:0] counter = 23'd0;
-   reg [15:0] gpib_out_reg = 16'd0; 
+   reg [15:0] gpib_out_reg = 16'hFFFF;
    reg [15:0] gpib_out_enable_reg = 16'd0; 
 
 
@@ -65,7 +65,7 @@ endgenerate
        end
 
        ACK :
-        if(gpib_in_reg[12] == 0) begin //DAV
+        if(gpib_in_reg[12] == 1) begin //DAV
           gpib_out_reg[10] <=0; //NDAC
           gpib_out_reg[11] <=1; //NRFD
           gpib_out_enable_reg[10] <=1; //NDAC

@@ -1,3 +1,10 @@
+ice4pi-example-gpib-scope (1.3) bookworm; urgency=medium
+
+  * Changed gpib_out_reg initial value to unasserted (high)
+  * Change in logic to confirm listenerresponse. Now waiting for low to high transition of DAC
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Fri, 25 Oct 2024 03:48:38 +0200
+
 ice4pi-example-gpib-scope (1.2) bookworm; urgency=medium
 
   * Added device emulator template with bi-directional 16 GPIB IOs toggling SRQ every sec 
