@@ -47,7 +47,7 @@ endgenerate
    parameter SIZE = 3;
    parameter IDLE  = 3'b001;
    parameter ACK = 3'b010;
-   reg   [SIZE-1:0] state;// Seq part of the FSM
+   reg   [SIZE-1:0] state = IDLE;// Seq part of the FSM
 
    always @ (negedge clk)
    begin
