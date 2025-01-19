@@ -1,3 +1,9 @@
+ice4pi-example-gpib-scope (1.5) bookworm; urgency=medium
+
+  * Added "dtparam spi=off" disables spidev driver and releases clk allowing ice40 to load
+
+ -- Vladimir Vassilev <vladimir@lightside-instruments.com>  Sun, 19 Jan 2025 20:43:54 +0100
+
 ice4pi-example-gpib-scope (1.4) bookworm; urgency=medium
 
   * Fixed bug. Added valid initial finite state machine state
